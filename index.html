@@ -105,6 +105,15 @@ body{font-family:var(--sans);background:#f4f2fb;color:var(--ink);min-height:100v
 .skeleton{background:linear-gradient(90deg,#ede9f8 25%,#f8f6ff 50%,#ede9f8 75%);background-size:200% 100%;animation:shimmer 1.4s infinite;border-radius:6px}
 @keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
 
+/* PAGINATION */
+.pagination{display:flex;align-items:center;justify-content:center;gap:6px;margin-top:24px;flex-wrap:wrap}
+.pg-btn{width:36px;height:36px;border-radius:var(--r);border:1.5px solid var(--border2);background:var(--white);font-size:13px;font-weight:600;color:var(--ink2);cursor:pointer;font-family:var(--sans);transition:all .15s;display:flex;align-items:center;justify-content:center}
+.pg-btn:hover{border-color:var(--purple-light);color:var(--purple)}
+.pg-btn.active{background:var(--purple);color:var(--white);border-color:var(--purple)}
+.pg-btn:disabled{opacity:.35;cursor:not-allowed}
+.pg-btn.arrow{width:auto;padding:0 14px;gap:4px}
+.pg-info{font-size:12px;color:var(--ink3);font-weight:500;padding:0 8px}
+
 /* FOOTER */
 .footer{text-align:center;margin-top:40px;font-size:12px;color:var(--ink3)}
 .footer a{color:var(--purple);text-decoration:none;font-weight:600}
@@ -172,6 +181,9 @@ body{font-family:var(--sans);background:#f4f2fb;color:var(--ink);min-height:100v
   <!-- JOBS -->
   <div class="jobs-list" id="jobsList"></div>
 
+  <!-- PAGINATION -->
+  <div class="pagination" id="pagination"></div>
+
   <!-- FOOTER -->
   <div class="footer">
     <p>Curated by <a href="https://acadoreskillsconsulting.com" target="_blank">AcadoreSkills</a> · Updated daily · Free forever</p>
@@ -182,10 +194,13 @@ body{font-family:var(--sans);background:#f4f2fb;color:var(--ink);min-height:100v
 <script>
 // ─── CONFIG ───────────────────────────────────────────────────────────────────
 const SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTXJssZtySVgwqudfVCVVgQ8lN0_7p9lW4FpdYhzvf7KMxFVRIWIm4orNDP3kPND9QI4qVFxH8RR5bg/pub?gid=0&single=true&output=csv";
+const JOBS_PER_PAGE = 10;
 
 // ─── STATE ────────────────────────────────────────────────────────────────────
 let allJobs = [];
+let filteredJobs = [];
 let activeFilter = 'all';
+let currentPage = 1;
 
 // ─── LOAD ─────────────────────────────────────────────────────────────────────
 async function loadJobs() {
@@ -240,18 +255,49 @@ function setChip(el) {
 
 function applyFilters() {
   const q = document.getElementById('searchInput').value.toLowerCase();
-  let filtered = allJobs.filter(j => {
+
+  // base pool filtered by search only (for chip counts)
+  const searchPool = allJobs.filter(j => {
     const blob = [j.title,j.company,j.location,j.tags,j.description,j.work_type,j.level].join(' ').toLowerCase();
-    const matchQ = !q || blob.includes(q);
-    const matchF = activeFilter === 'all' || blob.includes(activeFilter);
-    return matchQ && matchF;
+    return !q || blob.includes(q);
+  });
+
+  // update chip counts based on search pool
+  updateChipCounts(searchPool);
+
+  // full filter including active chip
+  filteredJobs = searchPool.filter(j => {
+    const blob = [j.title,j.company,j.location,j.tags,j.description,j.work_type,j.level].join(' ').toLowerCase();
+    return activeFilter === 'all' || blob.includes(activeFilter);
   });
 
   // featured first
-  filtered.sort((a,b) => (b.featured||'').toLowerCase()==='yes' ? 1 : -1);
+  filteredJobs.sort((a,b) => (b.featured||'').toLowerCase()==='yes' ? 1 : -1);
 
-  updateStats(filtered);
-  renderJobs(filtered);
+  currentPage = 1;
+  updateStats(filteredJobs);
+  renderPage();
+}
+
+function updateChipCounts(pool) {
+  document.querySelectorAll('.chip').forEach(chip => {
+    const filter = chip.dataset.filter;
+    let count;
+    if (filter === 'all') {
+      count = pool.length;
+    } else {
+      count = pool.filter(j => {
+        const blob = [j.title,j.company,j.location,j.tags,j.description,j.work_type,j.level].join(' ').toLowerCase();
+        return blob.includes(filter);
+      }).length;
+    }
+    // update label keeping original text
+    const label = chip.dataset.label || chip.textContent.split('(')[0].trim();
+    chip.dataset.label = label;
+    chip.innerHTML = count > 0
+      ? `${label} <span style="opacity:.7;font-size:11px">(${count})</span>`
+      : label;
+  });
 }
 
 function updateStats(jobs) {
@@ -260,7 +306,62 @@ function updateStats(jobs) {
   document.getElementById('statFresher').textContent = jobs.filter(j=>(j.level||'').toLowerCase().includes('fresher')).length;
   const companies = new Set(jobs.map(j=>j.company).filter(Boolean));
   document.getElementById('statCompanies').textContent = companies.size;
-  document.getElementById('resultsCount').textContent = jobs.length + ' role' + (jobs.length!==1?'s':'') + ' found';
+  const total = jobs.length;
+  const pages = Math.ceil(total / JOBS_PER_PAGE);
+  document.getElementById('resultsCount').textContent = total + ' role' + (total!==1?'s':'') + ' found';
+}
+
+// ─── RENDER PAGE ──────────────────────────────────────────────────────────────
+function renderPage() {
+  const totalPages = Math.ceil(filteredJobs.length / JOBS_PER_PAGE);
+  const start = (currentPage - 1) * JOBS_PER_PAGE;
+  const pageJobs = filteredJobs.slice(start, start + JOBS_PER_PAGE);
+
+  // update results count with page info
+  const total = filteredJobs.length;
+  document.getElementById('resultsCount').textContent =
+    total + ' role' + (total!==1?'s':'') + ' found' +
+    (totalPages > 1 ? ` · Page ${currentPage} of ${totalPages}` : '');
+
+  renderJobs(pageJobs);
+  renderPagination(totalPages);
+
+  // scroll to top of jobs list smoothly
+  document.getElementById('jobsList').scrollIntoView({behavior:'smooth', block:'start'});
+}
+
+function renderPagination(totalPages) {
+  const pg = document.getElementById('pagination');
+  if (totalPages <= 1) { pg.innerHTML = ''; return; }
+
+  let html = '';
+
+  // Prev button
+  html += `<button class="pg-btn arrow" onclick="goPage(${currentPage-1})" ${currentPage===1?'disabled':''}>← Prev</button>`;
+
+  // Page numbers
+  for (let i = 1; i <= totalPages; i++) {
+    if (
+      i === 1 || i === totalPages ||
+      (i >= currentPage - 1 && i <= currentPage + 1)
+    ) {
+      html += `<button class="pg-btn ${i===currentPage?'active':''}" onclick="goPage(${i})">${i}</button>`;
+    } else if (i === currentPage - 2 || i === currentPage + 2) {
+      html += `<span class="pg-info">…</span>`;
+    }
+  }
+
+  // Next button
+  html += `<button class="pg-btn arrow" onclick="goPage(${currentPage+1})" ${currentPage===totalPages?'disabled':''}>Next →</button>`;
+
+  pg.innerHTML = html;
+}
+
+function goPage(page) {
+  const totalPages = Math.ceil(filteredJobs.length / JOBS_PER_PAGE);
+  if (page < 1 || page > totalPages) return;
+  currentPage = page;
+  renderPage();
 }
 
 // ─── RENDER ───────────────────────────────────────────────────────────────────
