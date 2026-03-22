@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>SAP ABAP Jobs | AcadoreSkills</title>
+<meta name="description" content="Latest SAP ABAP job openings. Curated by AcadoreSkills — free for all developers."/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;1,400&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet"/>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --purple:#2d1b69;--purple-mid:#3d2490;--purple-light:#5b33c7;
+  --purple-soft:#f0ecff;--purple-dim:#e0d8ff;
+  --green:#22c55e;--green-dark:#16a34a;--green-bg:#f0fdf4;
+  --white:#ffffff;--off:#f8f7ff;
+  --ink:#1a1040;--ink2:#4a3f72;--ink3:#8b80b0;
+  --border:#e2ddf5;--border2:#cdc5f0;
+  --serif:'Playfair Display',serif;--sans:'DM Sans',sans-serif;
+  --r:8px;--rl:14px;
+}
+body{font-family:var(--sans);background:#f4f2fb;color:var(--ink);min-height:100vh;-webkit-font-smoothing:antialiased}
+.page{max-width:800px;margin:0 auto;padding:24px 16px 60px}
+
+.nav{display:flex;align-items:center;justify-content:space-between;background:var(--white);border-radius:var(--rl);padding:14px 20px;margin-bottom:20px;border:1.5px solid var(--border)}
+.nav-logo{font-family:var(--serif);font-size:18px;font-weight:600;color:var(--purple)}
+.nav-logo span{color:var(--green)}
+.nav-right{display:flex;align-items:center;gap:10px}
+.nav-link{font-size:13px;font-weight:500;color:var(--ink2);text-decoration:none;padding:7px 16px;border-radius:999px;border:1.5px solid var(--border2);transition:all .15s}
+.nav-link:hover{background:var(--purple);color:var(--white);border-color:var(--purple)}
+.sync-btn{background:transparent;border:none;cursor:pointer;font-family:var(--sans);display:flex;align-items:center;gap:5px;padding:6px 10px;border-radius:var(--r);color:var(--ink3);font-size:12px}
+.sync-btn:hover{background:var(--off);color:var(--ink)}
+.sync-icon{display:inline-block;font-size:14px;transition:transform .6s}
+.sync-icon.spinning{animation:spin .7s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* HERO */
+.hero{background:linear-gradient(135deg,var(--purple) 0%,var(--purple-mid) 60%,var(--purple-light) 100%);border-radius:var(--rl);padding:36px 28px 32px;margin-bottom:20px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-40px;right:-40px;width:200px;height:200px;border-radius:50%;background:rgba(255,255,255,.06)}
+.hero::after{content:'';position:absolute;bottom:-60px;left:30%;width:250px;height:250px;border-radius:50%;background:rgba(255,255,255,.04)}
+.hero-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);border-radius:999px;padding:5px 14px;font-size:11px;font-weight:600;color:rgba(255,255,255,.9);letter-spacing:.08em;text-transform:uppercase;margin-bottom:18px}
+.hero-badge::before{content:'';width:7px;height:7px;border-radius:50%;background:var(--green);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
+.hero h1{font-family:var(--serif);font-size:clamp(26px,5vw,36px);color:var(--white);line-height:1.2;margin-bottom:6px}
+.hero h1 em{font-style:italic;color:#b8a9ff}
+.hero p{font-size:14px;color:rgba(255,255,255,.75);max-width:480px;line-height:1.6;margin-bottom:24px}
+.stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.stat-card{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.18);border-radius:var(--r);padding:14px 16px;backdrop-filter:blur(4px)}
+.stat-val{font-size:22px;font-weight:700;color:var(--white);font-variant-numeric:tabular-nums}
+.stat-label{font-size:11px;color:rgba(255,255,255,.65);margin-top:3px;font-weight:500}
+
+/* FILTERS */
+.filter-box{background:var(--white);border-radius:var(--rl);padding:18px 20px;margin-bottom:16px;border:1.5px solid var(--border)}
+.search-wrap{position:relative;margin-bottom:14px}
+.search-icon{position:absolute;left:14px;top:50%;transform:translateY(-50%);color:var(--ink3);font-size:16px}
+.search-input{width:100%;padding:11px 14px 11px 40px;border:1.5px solid var(--border2);border-radius:var(--r);font-size:14px;font-family:var(--sans);color:var(--ink);background:var(--off);transition:border-color .15s}
+.search-input:focus{outline:none;border-color:var(--purple-light);background:var(--white)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{padding:6px 16px;border-radius:999px;border:1.5px solid var(--border2);background:var(--white);font-size:13px;font-weight:500;color:var(--ink2);cursor:pointer;transition:all .15s;font-family:var(--sans)}
+.chip:hover{border-color:var(--purple-light);color:var(--purple)}
+.chip.active{background:var(--purple);color:var(--white);border-color:var(--purple)}
+
+/* RESULTS BAR */
+.results-bar{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;padding:0 2px}
+.results-count{font-size:13px;color:var(--ink3);font-weight:500}
+.live-badge{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:600;color:var(--green-dark);background:var(--green-bg);border:1px solid #bbf7d0;border-radius:999px;padding:4px 12px}
+.live-badge::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--green)}
+
+/* JOB CARDS */
+.jobs-list{display:flex;flex-direction:column;gap:12px}
+.job-card{background:var(--white);border-radius:var(--rl);border:1.5px solid var(--border);padding:20px;transition:all .2s;cursor:default}
+.job-card:hover{border-color:var(--purple-light);box-shadow:0 4px 20px rgba(61,36,144,.08);transform:translateY(-1px)}
+.job-card.featured{border-top:3px solid var(--purple)}
+.card-top{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:12px}
+.company-logo{width:42px;height:42px;border-radius:var(--r);background:var(--purple-soft);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:15px;color:var(--purple-light);flex-shrink:0;border:1.5px solid var(--purple-dim)}
+.card-title-wrap{flex:1}
+.card-title{font-size:16px;font-weight:600;color:var(--ink);margin-bottom:3px;line-height:1.3}
+.card-company{font-size:13px;color:var(--ink2);font-weight:500}
+.badges{display:flex;gap:6px;flex-wrap:wrap}
+.badge{font-size:11px;font-weight:600;padding:3px 10px;border-radius:999px}
+.badge-new{background:#fef3c7;color:#92400e}
+.badge-featured{background:var(--purple-soft);color:var(--purple)}
+.badge-hot{background:#fee2e2;color:#991b1b}
+.card-meta{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:12px}
+.meta-item{display:flex;align-items:center;gap:5px;font-size:12px;color:var(--ink3);font-weight:500}
+.meta-item svg{opacity:.7}
+.card-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
+.tag{font-size:11px;font-weight:600;padding:3px 10px;border-radius:999px;background:var(--purple-soft);color:var(--purple-light);border:1px solid var(--purple-dim)}
+.card-footer{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px}
+.salary{font-size:15px;font-weight:700;color:var(--purple)}
+.card-actions{display:flex;gap:8px}
+.btn{padding:8px 18px;border-radius:999px;font-size:13px;font-weight:600;cursor:pointer;font-family:var(--sans);transition:all .15s;border:none}
+.btn-save{background:var(--off);color:var(--ink2);border:1.5px solid var(--border2)}
+.btn-save:hover{border-color:var(--purple-light);color:var(--purple)}
+.btn-apply{background:var(--green);color:var(--white)}
+.btn-apply:hover{background:var(--green-dark)}
+
+/* EMPTY / ERROR / LOADING */
+.state-box{background:var(--white);border-radius:var(--rl);border:1.5px solid var(--border);padding:48px 24px;text-align:center}
+.state-icon{font-size:36px;margin-bottom:12px}
+.state-title{font-size:17px;font-weight:600;color:var(--ink);margin-bottom:6px}
+.state-sub{font-size:13px;color:var(--ink3);margin-bottom:20px}
+.btn-retry{background:var(--purple);color:var(--white);padding:10px 24px;border-radius:999px;border:none;font-size:14px;font-weight:600;cursor:pointer;font-family:var(--sans)}
+
+/* SKELETON */
+.skeleton{background:linear-gradient(90deg,#ede9f8 25%,#f8f6ff 50%,#ede9f8 75%);background-size:200% 100%;animation:shimmer 1.4s infinite;border-radius:6px}
+@keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
+
+/* FOOTER */
+.footer{text-align:center;margin-top:40px;font-size:12px;color:var(--ink3)}
+.footer a{color:var(--purple);text-decoration:none;font-weight:600}
+
+@media(max-width:600px){
+  .stats-row{grid-template-columns:repeat(2,1fr)}
+  .card-top{flex-direction:column}
+  .card-footer{flex-direction:column;align-items:flex-start}
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="nav-logo">Acadore<span>Skills</span></div>
+    <div class="nav-right">
+      <button class="sync-btn" onclick="loadJobs()">
+        <span class="sync-icon" id="syncIcon">⟳</span>
+        <span>Refresh</span>
+      </button>
+      <a class="nav-link" href="https://acadoreskillsconsulting.com" target="_blank">← Website</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-badge">SAP Career Specialists</div>
+    <h1>Learn. Lead.<br><em>Land Your ABAP Role.</em></h1>
+    <p>AcadoreSkills brings you curated SAP ABAP job listings across India &amp; worldwide. Freshers to senior leads. Updated daily. Always free.</p>
+    <div class="stats-row">
+      <div class="stat-card"><div class="stat-val" id="statTotal">--</div><div class="stat-label">Open Roles</div></div>
+      <div class="stat-card"><div class="stat-val" id="statRemote">--</div><div class="stat-label">Remote Jobs</div></div>
+      <div class="stat-card"><div class="stat-val" id="statFresher">--</div><div class="stat-label">Fresher Roles</div></div>
+      <div class="stat-card"><div class="stat-val" id="statCompanies">--</div><div class="stat-label">Companies</div></div>
+    </div>
+  </div>
+
+  <!-- FILTERS -->
+  <div class="filter-box">
+    <div class="search-wrap">
+      <span class="search-icon">🔍</span>
+      <input class="search-input" id="searchInput" type="text" placeholder="Search role, skill, company or location..." oninput="applyFilters()"/>
+    </div>
+    <div class="chips" id="chipRow">
+      <button class="chip active" data-filter="all" onclick="setChip(this)">All Roles</button>
+      <button class="chip" data-filter="remote" onclick="setChip(this)">Remote</button>
+      <button class="chip" data-filter="hybrid" onclick="setChip(this)">Hybrid</button>
+      <button class="chip" data-filter="on-site" onclick="setChip(this)">On-site</button>
+      <button class="chip" data-filter="fresher" onclick="setChip(this)">Fresher</button>
+      <button class="chip" data-filter="senior" onclick="setChip(this)">Senior</button>
+      <button class="chip" data-filter="s/4hana" onclick="setChip(this)">S/4HANA</button>
+      <button class="chip" data-filter="fiori" onclick="setChip(this)">Fiori</button>
+      <button class="chip" data-filter="btp" onclick="setChip(this)">BTP Cloud</button>
+    </div>
+  </div>
+
+  <!-- RESULTS BAR -->
+  <div class="results-bar">
+    <span class="results-count" id="resultsCount">-- roles found</span>
+    <span class="live-badge">Live from Google Sheet</span>
+  </div>
+
+  <!-- JOBS -->
+  <div class="jobs-list" id="jobsList"></div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <p>Curated by <a href="https://acadoreskillsconsulting.com" target="_blank">AcadoreSkills</a> · Updated daily · Free forever</p>
+  </div>
+
+</div>
+
+<script>
+// ─── CONFIG ───────────────────────────────────────────────────────────────────
+const SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/1UAjqshWv5UtxEXTazeyJ8IPPPwVcMjc_ZqUT7tVPfRI/pub?gid=0&single=true&output=csv";
+
+// ─── STATE ────────────────────────────────────────────────────────────────────
+let allJobs = [];
+let activeFilter = 'all';
+
+// ─── LOAD ─────────────────────────────────────────────────────────────────────
+async function loadJobs() {
+  const icon = document.getElementById('syncIcon');
+  icon.classList.add('spinning');
+  showSkeletons();
+
+  try {
+    const res = await fetch(SHEET_CSV_URL + '&t=' + Date.now());
+    if (!res.ok) throw new Error('Sheet fetch failed: ' + res.status);
+    const csv = await res.text();
+    allJobs = parseCSV(csv);
+    applyFilters();
+  } catch (e) {
+    showError(e.message);
+  } finally {
+    icon.classList.remove('spinning');
+  }
+}
+
+// ─── CSV PARSER ───────────────────────────────────────────────────────────────
+function parseCSV(csv) {
+  const lines = csv.trim().split('\n');
+  if (lines.length < 2) return [];
+  const headers = lines[0].split(',').map(h => h.replace(/"/g,'').trim().toLowerCase().replace(/ /g,'_'));
+  return lines.slice(1).map(line => {
+    const vals = smartSplit(line);
+    const obj = {};
+    headers.forEach((h, i) => obj[h] = (vals[i] || '').replace(/"/g,'').trim());
+    return obj;
+  }).filter(j => (j.status || 'active').toLowerCase() === 'active' && j.title);
+}
+
+function smartSplit(line) {
+  const result = []; let cur = ''; let inQ = false;
+  for (let c of line) {
+    if (c === '"') { inQ = !inQ; }
+    else if (c === ',' && !inQ) { result.push(cur); cur = ''; }
+    else cur += c;
+  }
+  result.push(cur);
+  return result;
+}
+
+// ─── FILTERS ──────────────────────────────────────────────────────────────────
+function setChip(el) {
+  document.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
+  el.classList.add('active');
+  activeFilter = el.dataset.filter;
+  applyFilters();
+}
+
+function applyFilters() {
+  const q = document.getElementById('searchInput').value.toLowerCase();
+  let filtered = allJobs.filter(j => {
+    const blob = [j.title,j.company,j.location,j.tags,j.description,j.work_type,j.level].join(' ').toLowerCase();
+    const matchQ = !q || blob.includes(q);
+    const matchF = activeFilter === 'all' || blob.includes(activeFilter);
+    return matchQ && matchF;
+  });
+
+  // featured first
+  filtered.sort((a,b) => (b.featured||'').toLowerCase()==='yes' ? 1 : -1);
+
+  updateStats(filtered);
+  renderJobs(filtered);
+}
+
+function updateStats(jobs) {
+  document.getElementById('statTotal').textContent = jobs.length;
+  document.getElementById('statRemote').textContent = jobs.filter(j=>(j.work_type||'').toLowerCase().includes('remote')).length;
+  document.getElementById('statFresher').textContent = jobs.filter(j=>(j.level||'').toLowerCase().includes('fresher')).length;
+  const companies = new Set(jobs.map(j=>j.company).filter(Boolean));
+  document.getElementById('statCompanies').textContent = companies.size;
+  document.getElementById('resultsCount').textContent = jobs.length + ' role' + (jobs.length!==1?'s':'') + ' found';
+}
+
+// ─── RENDER ───────────────────────────────────────────────────────────────────
+function renderJobs(jobs) {
+  const list = document.getElementById('jobsList');
+  if (!jobs.length) {
+    list.innerHTML = `<div class="state-box">
+      <div class="state-icon">🔍</div>
+      <div class="state-title">No roles found</div>
+      <div class="state-sub">Try a different search or filter</div>
+    </div>`;
+    return;
+  }
+  list.innerHTML = jobs.map(j => jobCard(j)).join('');
+}
+
+function jobCard(j) {
+  const isFeatured = (j.featured||'').toLowerCase() === 'yes';
+  const isNew = isRecent(j.date_posted || j.date_added);
+  const initials = (j.company||'?').slice(0,2).toUpperCase();
+  const tags = (j.tags||'').split(',').map(t=>t.trim()).filter(Boolean);
+  const badgesHTML = [
+    isFeatured ? `<span class="badge badge-featured">⭐ Featured</span>` : '',
+    isNew ? `<span class="badge badge-new">🆕 New</span>` : ''
+  ].join('');
+
+  return `<div class="job-card${isFeatured?' featured':''}">
+    <div class="card-top">
+      <div class="company-logo">${initials}</div>
+      <div class="card-title-wrap">
+        <div class="card-title">${esc(j.title||'Untitled')}</div>
+        <div class="card-company">${esc(j.company||'Company')}</div>
+      </div>
+      <div class="badges">${badgesHTML}</div>
+    </div>
+    <div class="card-meta">
+      <span class="meta-item">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        ${esc(j.location||'India')}
+      </span>
+      <span class="meta-item">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+        ${esc(j.work_type||'On-site')}
+      </span>
+      <span class="meta-item">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        ${esc(j.level||'Mid-level')}
+      </span>
+      ${j.date_posted ? `<span class="meta-item">📅 ${esc(j.date_posted)}</span>` : ''}
+    </div>
+    ${tags.length ? `<div class="card-tags">${tags.map(t=>`<span class="tag">${esc(t)}</span>`).join('')}</div>` : ''}
+    <div class="card-footer">
+      <div class="salary">${j.salary ? '💰 '+esc(j.salary) : ''}</div>
+      <div class="card-actions">
+        <button class="btn btn-save">Save</button>
+        ${j.apply_url ? `<a href="${esc(j.apply_url)}" target="_blank" rel="noopener"><button class="btn btn-apply">Apply Now →</button></a>` : '<button class="btn btn-apply" disabled>Apply Now</button>'}
+      </div>
+    </div>
+  </div>`;
+}
+
+function isRecent(dateStr) {
+  if (!dateStr) return false;
+  const d = new Date(dateStr);
+  return !isNaN(d) && (Date.now() - d) < 7*24*60*60*1000;
+}
+
+function esc(s) {
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+// ─── SKELETON ─────────────────────────────────────────────────────────────────
+function showSkeletons() {
+  const list = document.getElementById('jobsList');
+  list.innerHTML = Array(4).fill(`<div class="job-card">
+    <div style="display:flex;gap:12px;margin-bottom:12px">
+      <div class="skeleton" style="width:42px;height:42px;border-radius:8px;flex-shrink:0"></div>
+      <div style="flex:1">
+        <div class="skeleton" style="height:16px;width:60%;margin-bottom:8px"></div>
+        <div class="skeleton" style="height:13px;width:35%"></div>
+      </div>
+    </div>
+    <div class="skeleton" style="height:12px;width:80%;margin-bottom:8px"></div>
+    <div style="display:flex;gap:8px;margin-bottom:12px">
+      <div class="skeleton" style="height:24px;width:70px;border-radius:999px"></div>
+      <div class="skeleton" style="height:24px;width:70px;border-radius:999px"></div>
+    </div>
+    <div class="skeleton" style="height:13px;width:40%"></div>
+  </div>`).join('');
+}
+
+// ─── ERROR ────────────────────────────────────────────────────────────────────
+function showError(msg) {
+  document.getElementById('jobsList').innerHTML = `<div class="state-box">
+    <div class="state-icon">⚠️</div>
+    <div class="state-title">Could not load jobs</div>
+    <div class="state-sub">${esc(msg)}</div>
+    <button class="btn-retry" onclick="loadJobs()">Try Again</button>
+  </div>`;
+  document.getElementById('statTotal').textContent = '--';
+  document.getElementById('statRemote').textContent = '--';
+  document.getElementById('statFresher').textContent = '--';
+  document.getElementById('statCompanies').textContent = '--';
+  document.getElementById('resultsCount').textContent = '-- roles found';
+}
+
+// ─── INIT ─────────────────────────────────────────────────────────────────────
+loadJobs();
+</script>
+</body>
+</html>
