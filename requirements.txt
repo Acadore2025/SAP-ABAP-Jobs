@@ -1,7 +1,4 @@
-# AcadoreSkills Job Scraper — Python Dependencies
-# Install locally with: pip install -r requirements.txt
-
-jobspy==1.1.4
+jobspy==0.31.0
 gspread==6.1.2
 google-auth==2.29.0
 pandas==2.2.2
