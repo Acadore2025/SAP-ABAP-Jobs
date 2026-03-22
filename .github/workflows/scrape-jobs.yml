@@ -1,1 +1,63 @@
+# ============================================================
+# AcadoreSkills — GitHub Actions Workflow
+# Runs the SAP ABAP job scraper automatically every day
+#
+# Schedule: Daily at 7:00 AM IST (1:30 AM UTC)
+# Cost: $0 — uses GitHub's free 2,000 minutes/month
+# ============================================================
+
+name: Scrape SAP ABAP Jobs Daily
+
+on:
+  # ── Automatic: runs every day at 7:00 AM IST ──────────────
+  schedule:
+    - cron: "30 1 * * *"   # 1:30 AM UTC = 7:00 AM IST
+
+  # ── Manual: run anytime from GitHub Actions tab ───────────
+  workflow_dispatch:
+    inputs:
+      reason:
+        description: "Reason for manual run (optional)"
+        required: false
+        default: "Manual trigger"
+
+jobs:
+  scrape-jobs:
+    name: Scrape & Update Google Sheet
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      # ── Step 1: Download your repo code ───────────────────
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # ── Step 2: Set up Python ─────────────────────────────
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: "pip"
+
+      # ── Step 3: Install dependencies ──────────────────────
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      # ── Step 4: Run the scraper ───────────────────────────
+      #    GOOGLE_CREDENTIALS comes from your GitHub Secret
+      #    (see README.md — Step 4 for how to add it)
+      - name: Run job scraper
+        env:
+          GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
+        run: |
+          python scraper/scrape_jobs.py
+
+      # ── Step 5: Print summary ─────────────────────────────
+      - name: Scrape complete
+        run: |
+          echo "✅ SAP ABAP job scrape complete!"
+          echo "📊 Check your Google Sheet for new listings."
+          echo "🕐 Next run: tomorrow at 7:00 AM IST"
 
