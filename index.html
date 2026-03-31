@@ -21,17 +21,36 @@
 body{font-family:var(--sans);background:#f4f2fb;color:var(--ink);min-height:100vh;-webkit-font-smoothing:antialiased}
 .page{max-width:800px;margin:0 auto;padding:24px 16px 60px}
 
-.nav{display:flex;align-items:center;justify-content:space-between;background:var(--white);border-radius:var(--rl);padding:14px 20px;margin-bottom:20px;border:1.5px solid var(--border)}
-.nav-logo{font-family:var(--serif);font-size:18px;font-weight:600;color:var(--purple)}
+/* NAV */
+.nav-wrapper{position:sticky;top:0;z-index:100;margin-bottom:20px}
+.nav{display:flex;align-items:center;justify-content:space-between;background:var(--white);border-radius:var(--rl);padding:14px 20px;border:1.5px solid var(--border);box-shadow:0 2px 12px rgba(45,27,105,.07);transition:box-shadow .2s}
+.nav-wrapper.scrolled .nav{box-shadow:0 4px 24px rgba(45,27,105,.13)}
+.nav-logo{font-family:var(--serif);font-size:18px;font-weight:600;color:var(--purple);text-decoration:none}
 .nav-logo span{color:var(--green)}
 .nav-right{display:flex;align-items:center;gap:10px}
-.nav-link{font-size:13px;font-weight:500;color:var(--ink2);text-decoration:none;padding:7px 16px;border-radius:999px;border:1.5px solid var(--border2);transition:all .15s}
+.nav-link{font-size:13px;font-weight:500;color:var(--ink2);text-decoration:none;padding:7px 16px;border-radius:999px;border:1.5px solid var(--border2);transition:all .15s;white-space:nowrap}
 .nav-link:hover{background:var(--purple);color:var(--white);border-color:var(--purple)}
+.nav-link.active-link{background:var(--purple-soft);color:var(--purple);border-color:var(--purple-dim)}
 .sync-btn{background:transparent;border:none;cursor:pointer;font-family:var(--sans);display:flex;align-items:center;gap:5px;padding:6px 10px;border-radius:var(--r);color:var(--ink3);font-size:12px}
 .sync-btn:hover{background:var(--off);color:var(--ink)}
 .sync-icon{display:inline-block;font-size:14px;transition:transform .6s}
 .sync-icon.spinning{animation:spin .7s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
+
+/* HAMBURGER */
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:6px;border-radius:var(--r);border:1.5px solid var(--border2);background:var(--white);transition:all .15s}
+.hamburger:hover{border-color:var(--purple-light)}
+.hamburger span{display:block;width:20px;height:2px;background:var(--ink2);border-radius:2px;transition:all .3s}
+.hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.hamburger.open span:nth-child(2){opacity:0}
+.hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+
+/* MOBILE MENU */
+.mobile-menu{display:none;flex-direction:column;gap:8px;background:var(--white);border-radius:var(--rl);border:1.5px solid var(--border);padding:16px 20px;margin-top:8px;box-shadow:0 4px 24px rgba(45,27,105,.1)}
+.mobile-menu.open{display:flex}
+.mobile-menu .nav-link{border-radius:var(--r);padding:10px 16px;font-size:14px}
+.mobile-menu .sync-btn{justify-content:flex-start;padding:10px 16px;font-size:14px;color:var(--ink2);border:1.5px solid var(--border2);border-radius:var(--r)}
+.mobile-menu .sync-btn:hover{background:var(--purple);color:var(--white)}
 
 /* HERO */
 .hero{background:linear-gradient(135deg,var(--purple) 0%,var(--purple-mid) 60%,var(--purple-light) 100%);border-radius:var(--rl);padding:36px 28px 32px;margin-bottom:20px;position:relative;overflow:hidden}
@@ -118,10 +137,13 @@ body{font-family:var(--sans);background:#f4f2fb;color:var(--ink);min-height:100v
 .footer{text-align:center;margin-top:40px;font-size:12px;color:var(--ink3)}
 .footer a{color:var(--purple);text-decoration:none;font-weight:600}
 
-@media(max-width:600px){
+@media(max-width:640px){
   .stats-row{grid-template-columns:repeat(2,1fr)}
   .card-top{flex-direction:column}
   .card-footer{flex-direction:column;align-items:flex-start}
+  .nav-right .nav-link{display:none}
+  .nav-right .sync-btn{display:none}
+  .hamburger{display:flex}
 }
 </style>
 </head>
@@ -129,16 +151,37 @@ body{font-family:var(--sans);background:#f4f2fb;color:var(--ink);min-height:100v
 <div class="page">
 
   <!-- NAV -->
-  <nav class="nav">
-    <div class="nav-logo">Acadore<span>Skills</span></div>
-    <div class="nav-right">
-      <button class="sync-btn" onclick="loadJobs()">
-        <span class="sync-icon" id="syncIcon">⟳</span>
-        <span>Refresh</span>
+  <div class="nav-wrapper" id="navWrapper">
+    <nav class="nav">
+      <a class="nav-logo" href="https://acadoreskillsconsulting.com">Acadore<span>Skills</span></a>
+      <div class="nav-right">
+        <a class="nav-link" href="https://acadoreskillsconsulting.com">Home</a>
+        <a class="nav-link" href="https://acadoreskillsconsulting.com/sap-abap-final.html">SAP ABAP</a>
+        <a class="nav-link active-link" href="#">SAP Jobs</a>
+        <a class="nav-link" href="https://acadoreskillsconsulting.com/mentorship.html">Mentorship</a>
+        <a class="nav-link" href="https://acadoreskillsconsulting.com/contact.html">Contact</a>
+        <button class="sync-btn" onclick="loadJobs()">
+          <span class="sync-icon" id="syncIcon">⟳</span>
+          <span>Refresh</span>
+        </button>
+      </div>
+      <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu">
+        <span></span><span></span><span></span>
       </button>
-      <a class="nav-link" href="https://acadoreskillsconsulting.com" target="_blank">← Website</a>
+    </nav>
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+      <a class="nav-link" href="https://acadoreskillsconsulting.com">🏠 Home</a>
+      <a class="nav-link" href="https://acadoreskillsconsulting.com/sap-abap-final.html">📚 SAP ABAP Course</a>
+      <a class="nav-link active-link" href="#">💼 SAP ABAP Jobs</a>
+      <a class="nav-link" href="https://acadoreskillsconsulting.com/mentorship.html">🎯 Mentorship</a>
+      <a class="nav-link" href="https://acadoreskillsconsulting.com/contact.html">📞 Contact</a>
+      <button class="sync-btn" onclick="loadJobs();toggleMenu()">
+        <span class="sync-icon">⟳</span>
+        <span>Refresh Jobs</span>
+      </button>
     </div>
-  </nav>
+  </div>
 
   <!-- HERO -->
   <div class="hero">
@@ -186,7 +229,15 @@ body{font-family:var(--sans);background:#f4f2fb;color:var(--ink);min-height:100v
 
   <!-- FOOTER -->
   <div class="footer">
-    <p>Curated by <a href="https://acadoreskillsconsulting.com" target="_blank">AcadoreSkills</a> · Updated daily · Free forever</p>
+    <p style="margin-bottom:10px">
+      <a href="https://acadoreskillsconsulting.com">Home</a> · 
+      <a href="https://acadoreskillsconsulting.com/sap-abap-final.html">SAP ABAP Course</a> · 
+      <a href="#">SAP ABAP Jobs</a> · 
+      <a href="https://acadoreskillsconsulting.com/mentorship.html">Mentorship</a> · 
+      <a href="https://acadoreskillsconsulting.com/contact.html">Contact</a>
+    </p>
+    <p>© 2025 AcadoreSkills Consulting · Updated daily · Free forever</p>
+    <p style="margin-top:6px;opacity:.6">Guided by <strong>Arvind Barnwal</strong> · SAP ABAP Certified Consultant</p>
   </div>
 
 </div>
@@ -467,6 +518,33 @@ function showError(msg) {
   document.getElementById('statCompanies').textContent = '--';
   document.getElementById('resultsCount').textContent = '-- roles found';
 }
+
+// ─── NAV ──────────────────────────────────────────────────────────────────────
+function toggleMenu() {
+  const menu = document.getElementById('mobileMenu');
+  const burger = document.getElementById('hamburger');
+  menu.classList.toggle('open');
+  burger.classList.toggle('open');
+}
+
+// Close mobile menu when clicking outside
+document.addEventListener('click', function(e) {
+  const wrapper = document.getElementById('navWrapper');
+  if (!wrapper.contains(e.target)) {
+    document.getElementById('mobileMenu').classList.remove('open');
+    document.getElementById('hamburger').classList.remove('open');
+  }
+});
+
+// Sticky shadow on scroll
+window.addEventListener('scroll', function() {
+  const wrapper = document.getElementById('navWrapper');
+  if (window.scrollY > 10) {
+    wrapper.classList.add('scrolled');
+  } else {
+    wrapper.classList.remove('scrolled');
+  }
+});
 
 // ─── INIT ─────────────────────────────────────────────────────────────────────
 loadJobs();
