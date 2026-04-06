@@ -7,7 +7,7 @@
 <meta name="description" content="Latest SAP ABAP job openings. Curated by AcadoreSkills — free for all developers."/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,400;1,600&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,400;1,600&family=Outfit:wght@300;400;500;600;700&family=Space+Mono&display=swap" rel="stylesheet"/>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -25,13 +25,13 @@ body{font-family:var(--sans);background:#f4f2fb;color:var(--ink);min-height:100v
 ::-webkit-scrollbar{width:5px}
 ::-webkit-scrollbar-track{background:var(--purple-soft)}
 ::-webkit-scrollbar-thumb{background:var(--purple-light);border-radius:3px}
- 
-/* ── NAV ── */
-.nav-outer{position:sticky;top:0;z-index:1000;background:rgba(255,255,255,0.95);backdrop-filter:blur(20px);border-bottom:1.5px solid var(--border);box-shadow:0 2px 20px rgba(45,27,105,0.06);transition:box-shadow .3s}
+
+/* NAV */
+.nav-outer{position:sticky;top:0;z-index:1000;background:rgba(255,255,255,0.97);backdrop-filter:blur(20px);border-bottom:1.5px solid var(--border);box-shadow:0 2px 20px rgba(45,27,105,0.06);transition:box-shadow .3s}
 .nav-outer.scrolled{box-shadow:0 4px 32px rgba(45,27,105,0.13)}
 .nav-inner{max-width:1280px;margin:0 auto;padding:0 48px;display:flex;align-items:center;justify-content:space-between;height:68px;gap:24px}
 .nav-logo{font-family:var(--serif);font-size:1.55rem;font-weight:700;color:var(--purple);text-decoration:none;letter-spacing:-0.3px;flex-shrink:0}
-.nav-logo span{color:var(--green)}
+.nav-logo span{color:var(--ink)}
 .nav-links{display:flex;align-items:center;gap:4px;list-style:none}
 .nav-links a{font-size:.84rem;font-weight:500;color:var(--ink2);text-decoration:none;padding:7px 15px;border-radius:999px;transition:all .18s;white-space:nowrap}
 .nav-links a:hover{background:var(--purple-soft);color:var(--purple)}
@@ -42,8 +42,6 @@ body{font-family:var(--sans);background:#f4f2fb;color:var(--ink);min-height:100v
 .sync-icon{font-size:14px;display:inline-block;transition:transform .6s}
 .sync-icon.spinning{animation:spin .7s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
- 
-/* Hamburger */
 .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:7px;border-radius:var(--r);border:1.5px solid var(--border2);background:var(--white);transition:all .18s}
 .hamburger span{display:block;width:20px;height:2px;background:var(--ink2);border-radius:2px;transition:all .3s}
 .hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
@@ -54,14 +52,13 @@ body{font-family:var(--sans);background:#f4f2fb;color:var(--ink);min-height:100v
 .mobile-menu a{color:var(--ink2);text-decoration:none;font-size:.9rem;font-weight:500;padding:10px 14px;border-radius:var(--r);border:1.5px solid transparent;transition:all .15s}
 .mobile-menu a:hover,.mobile-menu a.active{background:var(--purple-soft);color:var(--purple);border-color:var(--purple-dim)}
 .mobile-menu a.active{background:var(--purple);color:var(--white);border-color:var(--purple)}
- 
-/* ── HERO ── */
+
+/* HERO */
 .hero{background:linear-gradient(140deg,#1a1040 0%,var(--purple) 50%,var(--purple-mid) 100%);position:relative;overflow:hidden;padding:72px 48px 60px}
 .hero-bg-orb1{position:absolute;top:-80px;right:-80px;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(139,92,246,.25) 0%,transparent 70%)}
 .hero-bg-orb2{position:absolute;bottom:-100px;left:20%;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,rgba(91,51,199,.2) 0%,transparent 70%)}
 .hero-dots{position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.06) 1px,transparent 1px);background-size:28px 28px}
 .hero-content{position:relative;z-index:2;max-width:1280px;margin:0 auto;display:grid;grid-template-columns:1fr auto;gap:48px;align-items:center}
-.hero-left{}
 .hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.22);border-radius:999px;padding:6px 16px;font-size:.72rem;font-weight:600;color:rgba(255,255,255,.9);letter-spacing:1.2px;text-transform:uppercase;margin-bottom:20px}
 .live-dot{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 8px var(--green);animation:pulse 2s infinite}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
@@ -74,12 +71,11 @@ body{font-family:var(--sans);background:#f4f2fb;color:var(--ink);min-height:100v
 .stat-val{font-family:var(--serif);font-size:2rem;font-weight:700;color:var(--white);line-height:1}
 .stat-label{font-size:.7rem;color:rgba(255,255,255,.6);margin-top:5px;font-weight:500;text-transform:uppercase;letter-spacing:.6px}
 .hero-wave{position:absolute;bottom:-1px;left:0;right:0;line-height:0}
- 
-/* ── MAIN WRAPPER ── */
+
+/* MAIN */
 .main-wrap{max-width:1280px;margin:0 auto;padding:40px 48px 80px;display:grid;grid-template-columns:260px 1fr;gap:28px;align-items:start}
- 
-/* ── SIDEBAR ── */
-.sidebar{}
+
+/* SIDEBAR */
 .sidebar-section{background:var(--white);border:1.5px solid var(--border);border-radius:var(--rl);padding:20px;margin-bottom:16px}
 .sidebar-title{font-size:.72rem;font-weight:700;color:var(--ink3);text-transform:uppercase;letter-spacing:1px;margin-bottom:14px}
 .chips-col{display:flex;flex-direction:column;gap:6px}
@@ -95,23 +91,21 @@ body{font-family:var(--sans);background:#f4f2fb;color:var(--ink);min-height:100v
 .cta-btn:hover{background:var(--green);color:var(--white)}
 .cta-btn+.cta-btn{margin-top:8px;background:rgba(255,255,255,.15);color:var(--white);border:1px solid rgba(255,255,255,.3)}
 .cta-btn+.cta-btn:hover{background:rgba(255,255,255,.25)}
- 
-/* ── CONTENT AREA ── */
-.content-area{}
+
+/* CONTENT */
 .search-wrap{position:relative;margin-bottom:16px}
-.search-icon{position:absolute;left:16px;top:50%;transform:translateY(-50%);color:var(--ink3);font-size:16px;pointer-events:none}
+.search-icon-svg{position:absolute;left:16px;top:50%;transform:translateY(-50%);color:var(--ink3);pointer-events:none}
 .search-input{width:100%;padding:13px 16px 13px 46px;border:1.5px solid var(--border2);border-radius:var(--rl);font-size:.9rem;font-family:var(--sans);color:var(--ink);background:var(--white);transition:border-color .18s,box-shadow .18s;box-shadow:0 2px 8px rgba(45,27,105,.04)}
 .search-input:focus{outline:none;border-color:var(--purple-light);box-shadow:0 0 0 3px rgba(91,51,199,.1)}
 .results-bar{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;padding:0 2px}
 .results-count{font-size:.84rem;color:var(--ink3);font-weight:500}
 .live-badge{display:inline-flex;align-items:center;gap:6px;font-size:.72rem;font-weight:600;color:var(--green-dark);background:var(--green-bg);border:1px solid #bbf7d0;border-radius:999px;padding:5px 13px}
 .live-badge::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--green)}
- 
-/* ── JOB CARDS ── */
+
+/* JOB CARDS */
 .jobs-list{display:flex;flex-direction:column;gap:14px}
 .job-card{background:var(--white);border-radius:var(--rl);border:1.5px solid var(--border);padding:22px 24px;transition:all .22s;position:relative;overflow:hidden}
 .job-card:hover{border-color:rgba(91,51,199,.3);box-shadow:0 6px 32px rgba(45,27,105,.1);transform:translateY(-2px)}
-.job-card.featured{border-top:3px solid var(--purple-light)}
 .job-card.featured::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--purple),var(--purple-light),#a78bfa)}
 .card-top{display:flex;align-items:flex-start;gap:14px;margin-bottom:14px}
 .company-logo{width:46px;height:46px;border-radius:var(--r);background:var(--purple-soft);display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-weight:700;font-size:16px;color:var(--purple-light);flex-shrink:0;border:1.5px solid var(--purple-dim)}
@@ -119,10 +113,9 @@ body{font-family:var(--sans);background:#f4f2fb;color:var(--ink);min-height:100v
 .card-title{font-size:1rem;font-weight:600;color:var(--ink);margin-bottom:3px;line-height:1.3}
 .card-company{font-size:.83rem;color:var(--ink2);font-weight:500}
 .badges{display:flex;gap:6px;flex-wrap:wrap;margin-left:auto;flex-shrink:0}
-.badge{font-size:.7rem;font-weight:700;padding:3px 10px;border-radius:999px}
+.badge{font-size:.7rem;font-weight:700;padding:3px 10px;border-radius:999px;letter-spacing:.3px}
 .badge-new{background:#fef3c7;color:#92400e}
 .badge-featured{background:var(--purple-soft);color:var(--purple)}
-.badge-hot{background:#fee2e2;color:#991b1b}
 .card-meta{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:14px}
 .meta-item{display:flex;align-items:center;gap:5px;font-size:.78rem;color:var(--ink3);font-weight:500}
 .card-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px}
@@ -136,42 +129,42 @@ body{font-family:var(--sans);background:#f4f2fb;color:var(--ink);min-height:100v
 .btn-apply{background:var(--green);color:var(--white);box-shadow:0 3px 12px rgba(34,197,94,.25)}
 .btn-apply:hover{background:var(--green-dark);transform:translateY(-1px)}
 .btn-apply:disabled{opacity:.4;cursor:not-allowed;transform:none}
- 
-/* ── SKELETON ── */
+
+/* SKELETON */
 .skeleton{background:linear-gradient(90deg,#ede9f8 25%,#f8f6ff 50%,#ede9f8 75%);background-size:200% 100%;animation:shimmer 1.4s infinite;border-radius:6px}
 @keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
- 
-/* ── STATES ── */
+
+/* STATES */
 .state-box{background:var(--white);border-radius:var(--rl);border:1.5px solid var(--border);padding:56px 24px;text-align:center}
-.state-icon{font-size:40px;margin-bottom:14px}
 .state-title{font-family:var(--serif);font-size:1.4rem;font-weight:700;color:var(--ink);margin-bottom:8px}
 .state-sub{font-size:.85rem;color:var(--ink3);margin-bottom:20px}
 .btn-retry{background:var(--purple);color:var(--white);padding:10px 28px;border-radius:999px;border:none;font-size:.88rem;font-weight:600;cursor:pointer;font-family:var(--sans)}
- 
-/* ── PAGINATION ── */
+
+/* PAGINATION */
 .pagination{display:flex;align-items:center;justify-content:center;gap:6px;margin-top:28px;flex-wrap:wrap}
 .pg-btn{min-width:36px;height:36px;border-radius:var(--r);border:1.5px solid var(--border2);background:var(--white);font-size:.82rem;font-weight:600;color:var(--ink2);cursor:pointer;font-family:var(--sans);transition:all .15s;display:flex;align-items:center;justify-content:center;padding:0 12px;gap:4px}
 .pg-btn:hover{border-color:var(--purple-light);color:var(--purple)}
 .pg-btn.active{background:var(--purple);color:var(--white);border-color:var(--purple)}
 .pg-btn:disabled{opacity:.35;cursor:not-allowed}
 .pg-info{font-size:.8rem;color:var(--ink3);padding:0 4px}
- 
-/* ── FOOTER ── */
-.footer-wrap{background:linear-gradient(135deg,#1a1040 0%,var(--purple) 100%);padding:48px 48px 32px;margin-top:0}
-.footer-inner{max-width:1280px;margin:0 auto}
-.footer-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:40px;margin-bottom:36px}
-.footer-brand .logo{font-family:var(--serif);font-size:1.4rem;font-weight:700;color:var(--white);margin-bottom:10px}
-.footer-brand .logo span{color:var(--green)}
-.footer-brand p{font-size:.8rem;color:rgba(255,255,255,.55);line-height:1.7}
-.footer-col h4{font-size:.72rem;font-weight:700;color:rgba(255,255,255,.4);text-transform:uppercase;letter-spacing:1px;margin-bottom:14px}
-.footer-col a{display:block;font-size:.84rem;color:rgba(255,255,255,.65);text-decoration:none;margin-bottom:8px;transition:color .15s}
-.footer-col a:hover{color:var(--white)}
-.footer-bottom{border-top:1px solid rgba(255,255,255,.1);padding-top:24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
-.footer-copy{font-size:.78rem;color:rgba(255,255,255,.4)}
-.footer-by{font-size:.78rem;color:rgba(255,255,255,.4)}
-.footer-by strong{color:rgba(255,255,255,.65)}
- 
-/* ── RESPONSIVE ── */
+
+/* FOOTER */
+footer{background:#1E1040;padding:52px 64px;}
+.footer-inner{max-width:1280px;margin:0 auto;}
+.footer-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:40px;margin-bottom:40px;}
+.footer-brand .logo{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:700;color:#6B3FCC;text-decoration:none;display:block;margin-bottom:0;}
+.footer-brand .logo span{color:white;}
+.footer-brand .tagline{font-family:'Space Mono',monospace;font-size:.72rem;letter-spacing:2px;color:rgba(196,181,253,.5);margin-top:12px;margin-bottom:16px;}
+.footer-brand .tagline strong{color:rgba(196,181,253,.8);font-weight:700;}
+.footer-wa-btn{display:inline-flex;align-items:center;gap:8px;background:#25D366;color:white;padding:10px 20px;border-radius:50px;text-decoration:none;font-size:.83rem;font-weight:600;}
+.footer-wa-btn svg{width:15px;height:15px;fill:white;}
+.footer-col h5{font-size:.8rem;font-weight:700;color:#C4B5FD;letter-spacing:1px;text-transform:uppercase;margin-bottom:16px;}
+.footer-col a{display:block;color:rgba(196,181,253,.5);text-decoration:none;font-size:.83rem;margin-bottom:8px;transition:color .2s;}
+.footer-col a:hover{color:#C4B5FD;}
+.footer-bottom{border-top:1px solid rgba(196,181,253,.1);padding-top:24px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;}
+.footer-bottom p{color:rgba(196,181,253,.3);font-size:.78rem;}
+
+/* RESPONSIVE */
 @media(max-width:1024px){
   .hero-content{grid-template-columns:1fr;gap:32px}
   .hero-stats{grid-template-columns:repeat(4,1fr)}
@@ -191,9 +184,9 @@ body{font-family:var(--sans);background:#f4f2fb;color:var(--ink);min-height:100v
   .sidebar-section{flex:1;min-width:calc(50% - 6px);margin-bottom:0}
   .chips-col{flex-direction:row;flex-wrap:wrap}
   .chip{padding:7px 12px;font-size:.78rem}
-  .footer-wrap{padding:40px 20px 24px}
-  .footer-grid{grid-template-columns:1fr;gap:24px}
-  .footer-bottom{flex-direction:column;text-align:center}
+  footer{padding:40px 20px;}
+  .footer-grid{grid-template-columns:1fr 1fr;}
+  .footer-bottom{flex-direction:column;text-align:center;}
 }
 @media(max-width:480px){
   .hero h1{font-size:2.2rem}
@@ -202,11 +195,12 @@ body{font-family:var(--sans);background:#f4f2fb;color:var(--ink);min-height:100v
   .badges{margin-left:0}
   .sidebar{flex-direction:column}
   .sidebar-section{min-width:100%}
+  .footer-grid{grid-template-columns:1fr;}
 }
 </style>
 </head>
 <body>
- 
+
 <!-- NAV -->
 <div class="nav-outer" id="navOuter">
   <div class="nav-inner">
@@ -220,7 +214,7 @@ body{font-family:var(--sans);background:#f4f2fb;color:var(--ink);min-height:100v
     </ul>
     <div class="nav-actions">
       <button class="sync-btn" onclick="loadJobs()">
-        <span class="sync-icon" id="syncIcon">⟳</span>
+        <span class="sync-icon" id="syncIcon">&#8635;</span>
         <span>Refresh</span>
       </button>
       <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu">
@@ -229,16 +223,16 @@ body{font-family:var(--sans);background:#f4f2fb;color:var(--ink);min-height:100v
     </div>
   </div>
 </div>
- 
+
 <!-- Mobile Menu -->
 <div class="mobile-menu" id="mobileMenu">
-  <a href="https://acadoreskillsconsulting.com">🏠 Home</a>
-  <a href="https://acadoreskillsconsulting.com/sap-abap-final.html">📚 SAP ABAP Course</a>
-  <a href="#" class="active">💼 SAP ABAP Jobs</a>
-  <a href="https://acadoreskillsconsulting.com/mentorship.html">🎯 Mentorship</a>
-  <a href="https://acadoreskillsconsulting.com/contact.html">📞 Contact</a>
+  <a href="https://acadoreskillsconsulting.com">Home</a>
+  <a href="https://acadoreskillsconsulting.com/sap-abap-final.html">SAP ABAP Course</a>
+  <a href="#" class="active">SAP ABAP Jobs</a>
+  <a href="https://acadoreskillsconsulting.com/mentorship.html">Mentorship</a>
+  <a href="https://acadoreskillsconsulting.com/contact.html">Contact</a>
 </div>
- 
+
 <!-- HERO -->
 <section class="hero">
   <div class="hero-bg-orb1"></div>
@@ -266,21 +260,19 @@ body{font-family:var(--sans);background:#f4f2fb;color:var(--ink);min-height:100v
     </svg>
   </div>
 </section>
- 
+
 <!-- MAIN -->
 <div class="main-wrap">
- 
-  <!-- SIDEBAR -->
   <aside class="sidebar">
     <div class="sidebar-section">
       <div class="sidebar-title">Filter by Type</div>
       <div class="chips-col" id="chipRow">
         <button class="chip active" data-filter="all" onclick="setChip(this)">All Roles <span class="chip-count" id="cnt-all"></span></button>
-        <button class="chip" data-filter="remote" onclick="setChip(this)">🌐 Remote <span class="chip-count" id="cnt-remote"></span></button>
-        <button class="chip" data-filter="hybrid" onclick="setChip(this)">🏢 Hybrid <span class="chip-count" id="cnt-hybrid"></span></button>
-        <button class="chip" data-filter="on-site" onclick="setChip(this)">📍 On-site <span class="chip-count" id="cnt-on-site"></span></button>
-        <button class="chip" data-filter="fresher" onclick="setChip(this)">🌱 Fresher <span class="chip-count" id="cnt-fresher"></span></button>
-        <button class="chip" data-filter="senior" onclick="setChip(this)">⭐ Senior <span class="chip-count" id="cnt-senior"></span></button>
+        <button class="chip" data-filter="remote" onclick="setChip(this)">Remote <span class="chip-count" id="cnt-remote"></span></button>
+        <button class="chip" data-filter="hybrid" onclick="setChip(this)">Hybrid <span class="chip-count" id="cnt-hybrid"></span></button>
+        <button class="chip" data-filter="on-site" onclick="setChip(this)">On-site <span class="chip-count" id="cnt-on-site"></span></button>
+        <button class="chip" data-filter="fresher" onclick="setChip(this)">Fresher <span class="chip-count" id="cnt-fresher"></span></button>
+        <button class="chip" data-filter="senior" onclick="setChip(this)">Senior <span class="chip-count" id="cnt-senior"></span></button>
       </div>
     </div>
     <div class="sidebar-section">
@@ -294,68 +286,77 @@ body{font-family:var(--sans);background:#f4f2fb;color:var(--ink);min-height:100v
     <div class="cta-card">
       <h3>Become Job-Ready</h3>
       <p>Get trained by a certified SAP ABAP expert and land your dream role faster.</p>
-      <a class="cta-btn" href="https://acadoreskillsconsulting.com/sap-abap-final.html">View SAP Course →</a>
+      <a class="cta-btn" href="https://acadoreskillsconsulting.com/sap-abap-final.html">View SAP Course &rarr;</a>
       <a class="cta-btn" href="https://acadoreskillsconsulting.com/mentorship.html">1-on-1 Mentorship</a>
     </div>
   </aside>
- 
-  <!-- CONTENT -->
+
   <div class="content-area">
     <div class="search-wrap">
-      <span class="search-icon">🔍</span>
+      <span class="search-icon-svg">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      </span>
       <input class="search-input" id="searchInput" type="text" placeholder="Search role, skill, company or location..." oninput="applyFilters()"/>
     </div>
- 
     <div class="results-bar">
       <span class="results-count" id="resultsCount">-- roles found</span>
-      <span class="live-badge">Live from Google Sheet</span>
+      
     </div>
- 
     <div class="jobs-list" id="jobsList"></div>
     <div class="pagination" id="pagination"></div>
   </div>
- 
 </div>
- 
+
 <!-- FOOTER -->
-<footer class="footer-wrap">
+<footer>
   <div class="footer-inner">
     <div class="footer-grid">
       <div class="footer-brand">
-        <div class="logo">Acadore<span>Skills</span></div>
-        <p>India's premier SAP ABAP training & career mentorship platform. Helping freshers and professionals land their dream SAP roles.</p>
+        <a href="https://acadoreskillsconsulting.com" class="logo">Acadore<span>Skills</span></a>
+        <p class="tagline"><strong>Clarity. Structure. Progress.</strong></p>
+        <a class="footer-wa-btn" href="https://wa.me/917032137723?text=Hi!%20I%20want%20to%20connect%20with%20the%20AcadoreSkills%20team.">
+          <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          WhatsApp Us
+        </a>
       </div>
       <div class="footer-col">
-        <h4>Programs</h4>
+        <h5>Programs</h5>
         <a href="https://acadoreskillsconsulting.com/sap-abap-final.html">SAP ABAP Course</a>
         <a href="https://acadoreskillsconsulting.com/mentorship.html">1-on-1 Mentorship</a>
         <a href="#">SAP ABAP Jobs</a>
+        <a href="#">Professional Courses</a>
       </div>
       <div class="footer-col">
-        <h4>Company</h4>
+        <h5>Company</h5>
         <a href="https://acadoreskillsconsulting.com">Home</a>
         <a href="https://acadoreskillsconsulting.com/about.html">About Us</a>
-        <a href="https://acadoreskillsconsulting.com/contact.html">Contact</a>
+        <a href="https://acadoreskillsconsulting.com/blogs.html">Blogs</a>
+        <a href="https://acadoreskillsconsulting.com/contact.html">Contact Us</a>
+      </div>
+      <div class="footer-col">
+        <h5>Legal</h5>
+        <a href="https://acadoreskillsconsulting.com/terms.html">Terms &amp; Conditions</a>
+        <a href="https://acadoreskillsconsulting.com/refund.html">Refund Policy</a>
+        <a href="https://acadoreskillsconsulting.com/payment.html">Payment Policy</a>
+        <a href="https://acadoreskillsconsulting.com/privacy.html">Privacy Policy</a>
       </div>
     </div>
     <div class="footer-bottom">
-      <div class="footer-copy">© 2025 AcadoreSkills Consulting · Updated daily · Free forever</div>
-      <div class="footer-by">Guided by <strong>Arvind Barnwal</strong> · SAP ABAP Certified Consultant</div>
+      <p>&copy; 2025 AcadoreSkills Consulting &middot; Updated daily &middot; Free forever</p>
+      <p>Governed by the laws of India &middot; Jurisdiction: Kanpur, Uttar Pradesh</p>
     </div>
   </div>
 </footer>
- 
+
 <script>
 const SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTXJssZtySVgwqudfVCVVgQ8lN0_7p9lW4FpdYhzvf7KMxFVRIWIm4orNDP3kPND9QI4qVFxH8RR5bg/pub?gid=0&single=true&output=csv";
 const JOBS_PER_PAGE = 10;
- 
 let allJobs = [];
 let filteredJobs = [];
 let activeFilter = 'all';
 let currentPage = 1;
- 
 const FILTERS = ['all','remote','hybrid','on-site','fresher','senior','s/4hana','fiori','btp'];
- 
+
 async function loadJobs() {
   const icon = document.getElementById('syncIcon');
   icon.classList.add('spinning');
@@ -372,7 +373,7 @@ async function loadJobs() {
     icon.classList.remove('spinning');
   }
 }
- 
+
 function parseCSV(csv) {
   const lines = csv.trim().split('\n');
   if (lines.length < 2) return [];
@@ -384,7 +385,7 @@ function parseCSV(csv) {
     return obj;
   }).filter(j => (j.status||'active').toLowerCase() === 'active' && j.title);
 }
- 
+
 function smartSplit(line) {
   const result=[]; let cur=''; let inQ=false;
   for(let c of line){
@@ -395,7 +396,7 @@ function smartSplit(line) {
   result.push(cur);
   return result;
 }
- 
+
 function setChip(el) {
   document.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
   el.classList.add('active');
@@ -403,7 +404,7 @@ function setChip(el) {
   currentPage = 1;
   applyFilters();
 }
- 
+
 function applyFilters() {
   const q = document.getElementById('searchInput').value.toLowerCase();
   const searchPool = allJobs.filter(j => {
@@ -421,7 +422,7 @@ function applyFilters() {
   updateStats(filteredJobs);
   renderPage();
 }
- 
+
 function updateChipCounts(pool) {
   FILTERS.forEach(f => {
     const el = document.getElementById('cnt-' + f);
@@ -433,14 +434,14 @@ function updateChipCounts(pool) {
     el.textContent = count > 0 ? '(' + count + ')' : '';
   });
 }
- 
+
 function updateStats(jobs) {
   document.getElementById('statTotal').textContent = jobs.length;
   document.getElementById('statRemote').textContent = jobs.filter(j=>(j.work_type||'').toLowerCase().includes('remote')).length;
   document.getElementById('statFresher').textContent = jobs.filter(j=>(j.level||'').toLowerCase().includes('fresher')).length;
   document.getElementById('statCompanies').textContent = new Set(jobs.map(j=>j.company).filter(Boolean)).size;
 }
- 
+
 function renderPage() {
   const totalPages = Math.ceil(filteredJobs.length / JOBS_PER_PAGE);
   const start = (currentPage-1) * JOBS_PER_PAGE;
@@ -448,26 +449,26 @@ function renderPage() {
   const total = filteredJobs.length;
   document.getElementById('resultsCount').textContent =
     total + ' role' + (total!==1?'s':'') + ' found' +
-    (totalPages>1 ? ` · Page ${currentPage} of ${totalPages}` : '');
+    (totalPages>1 ? ' \u00b7 Page ' + currentPage + ' of ' + totalPages : '');
   renderJobs(pageJobs);
   renderPagination(totalPages);
 }
- 
+
 function renderPagination(totalPages) {
   const pg = document.getElementById('pagination');
   if (totalPages <= 1) { pg.innerHTML=''; return; }
-  let html = `<button class="pg-btn" onclick="goPage(${currentPage-1})" ${currentPage===1?'disabled':''}>← Prev</button>`;
+  let html = '<button class="pg-btn" onclick="goPage(' + (currentPage-1) + ')" ' + (currentPage===1?'disabled':'') + '>&larr; Prev</button>';
   for(let i=1;i<=totalPages;i++){
     if(i===1||i===totalPages||(i>=currentPage-1&&i<=currentPage+1)){
-      html+=`<button class="pg-btn ${i===currentPage?'active':''}" onclick="goPage(${i})">${i}</button>`;
+      html+='<button class="pg-btn ' + (i===currentPage?'active':'') + '" onclick="goPage(' + i + ')">' + i + '</button>';
     } else if(i===currentPage-2||i===currentPage+2){
-      html+=`<span class="pg-info">…</span>`;
+      html+='<span class="pg-info">&hellip;</span>';
     }
   }
-  html+=`<button class="pg-btn" onclick="goPage(${currentPage+1})" ${currentPage===totalPages?'disabled':''}>Next →</button>`;
+  html+='<button class="pg-btn" onclick="goPage(' + (currentPage+1) + ')" ' + (currentPage===totalPages?'disabled':'') + '>Next &rarr;</button>';
   pg.innerHTML=html;
 }
- 
+
 function goPage(page) {
   const totalPages = Math.ceil(filteredJobs.length / JOBS_PER_PAGE);
   if(page<1||page>totalPages) return;
@@ -475,122 +476,87 @@ function goPage(page) {
   renderPage();
   document.getElementById('jobsList').scrollIntoView({behavior:'smooth',block:'start'});
 }
- 
+
 function renderJobs(jobs) {
   const list = document.getElementById('jobsList');
   if(!jobs.length){
-    list.innerHTML=`<div class="state-box">
-      <div class="state-icon">🔍</div>
-      <div class="state-title">No roles found</div>
-      <div class="state-sub">Try a different search or filter</div>
-    </div>`;
+    list.innerHTML='<div class="state-box"><div class="state-title">No roles found</div><div class="state-sub">Try a different search or filter</div></div>';
     return;
   }
   list.innerHTML = jobs.map(j=>jobCard(j)).join('');
 }
- 
+
 function jobCard(j) {
   const isFeatured = (j.featured||'').toLowerCase()==='yes';
   const isNew = isRecent(j.date_posted||j.date_added);
   const initials = (j.company||'?').slice(0,2).toUpperCase();
   const tags = (j.tags||'').split(',').map(t=>t.trim()).filter(Boolean);
   const badgesHTML = [
-    isFeatured?`<span class="badge badge-featured">⭐ Featured</span>`:'',
-    isNew?`<span class="badge badge-new">🆕 New</span>`:''
+    isFeatured ? '<span class="badge badge-featured">Featured</span>' : '',
+    isNew ? '<span class="badge badge-new">New</span>' : ''
   ].join('');
-  return `<div class="job-card${isFeatured?' featured':''}">
-    <div class="card-top">
-      <div class="company-logo">${initials}</div>
-      <div class="card-title-wrap">
-        <div class="card-title">${esc(j.title||'Untitled')}</div>
-        <div class="card-company">${esc(j.company||'Company')}</div>
-      </div>
-      <div class="badges">${badgesHTML}</div>
-    </div>
-    <div class="card-meta">
-      <span class="meta-item">
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-        ${esc(j.location||'India')}
-      </span>
-      <span class="meta-item">
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-        ${esc(j.work_type||'On-site')}
-      </span>
-      <span class="meta-item">
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-        ${esc(j.level||'Mid-level')}
-      </span>
-      ${j.date_posted?`<span class="meta-item">📅 ${esc(j.date_posted)}</span>`:''}
-    </div>
-    ${tags.length?`<div class="card-tags">${tags.map(t=>`<span class="tag">${esc(t)}</span>`).join('')}</div>`:''}
-    <div class="card-footer">
-      <div class="salary">${j.salary?'💰 '+esc(j.salary):''}</div>
-      <div class="card-actions">
-        <button class="btn btn-save">Save</button>
-        ${j.apply_url
-          ?`<a href="${esc(j.apply_url)}" target="_blank" rel="noopener"><button class="btn btn-apply">Apply Now →</button></a>`
-          :`<button class="btn btn-apply" disabled>Apply Now</button>`}
-      </div>
-    </div>
-  </div>`;
+  return '<div class="job-card' + (isFeatured?' featured':'') + '">' +
+    '<div class="card-top">' +
+      '<div class="company-logo">' + initials + '</div>' +
+      '<div class="card-title-wrap">' +
+        '<div class="card-title">' + esc(j.title||'Untitled') + '</div>' +
+        '<div class="card-company">' + esc(j.company||'Company') + '</div>' +
+      '</div>' +
+      '<div class="badges">' + badgesHTML + '</div>' +
+    '</div>' +
+    '<div class="card-meta">' +
+      '<span class="meta-item"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>' + esc(j.location||'India') + '</span>' +
+      '<span class="meta-item"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>' + esc(j.work_type||'On-site') + '</span>' +
+      '<span class="meta-item"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>' + esc(j.level||'Mid-level') + '</span>' +
+      (j.date_posted ? '<span class="meta-item">' + esc(j.date_posted) + '</span>' : '') +
+    '</div>' +
+    (tags.length ? '<div class="card-tags">' + tags.map(t=>'<span class="tag">'+esc(t)+'</span>').join('') + '</div>' : '') +
+    '<div class="card-footer">' +
+      '<div class="salary">' + (j.salary ? esc(j.salary) : '') + '</div>' +
+      '<div class="card-actions">' +
+        '<button class="btn btn-save">Save</button>' +
+        (j.apply_url
+          ? '<a href="' + esc(j.apply_url) + '" target="_blank" rel="noopener"><button class="btn btn-apply">Apply Now &rarr;</button></a>'
+          : '<button class="btn btn-apply" disabled>Apply Now</button>') +
+      '</div>' +
+    '</div>' +
+  '</div>';
 }
- 
+
 function isRecent(dateStr) {
   if(!dateStr) return false;
   const d = new Date(dateStr);
   return !isNaN(d) && (Date.now()-d) < 7*24*60*60*1000;
 }
- 
+
 function esc(s){
   return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 }
- 
+
 function showSkeletons() {
-  document.getElementById('jobsList').innerHTML = Array(4).fill(`
-    <div class="job-card">
-      <div style="display:flex;gap:14px;margin-bottom:14px">
-        <div class="skeleton" style="width:46px;height:46px;border-radius:10px;flex-shrink:0"></div>
-        <div style="flex:1">
-          <div class="skeleton" style="height:16px;width:55%;margin-bottom:8px"></div>
-          <div class="skeleton" style="height:13px;width:30%"></div>
-        </div>
-      </div>
-      <div style="display:flex;gap:10px;margin-bottom:14px">
-        <div class="skeleton" style="height:13px;width:25%"></div>
-        <div class="skeleton" style="height:13px;width:20%"></div>
-        <div class="skeleton" style="height:13px;width:18%"></div>
-      </div>
-      <div style="display:flex;gap:8px;margin-bottom:16px">
-        <div class="skeleton" style="height:24px;width:72px;border-radius:999px"></div>
-        <div class="skeleton" style="height:24px;width:72px;border-radius:999px"></div>
-        <div class="skeleton" style="height:24px;width:72px;border-radius:999px"></div>
-      </div>
-      <div style="display:flex;justify-content:space-between;align-items:center">
-        <div class="skeleton" style="height:16px;width:30%"></div>
-        <div style="display:flex;gap:8px">
-          <div class="skeleton" style="height:36px;width:72px;border-radius:999px"></div>
-          <div class="skeleton" style="height:36px;width:96px;border-radius:999px"></div>
-        </div>
-      </div>
-    </div>`).join('');
+  document.getElementById('jobsList').innerHTML = Array(4).fill(
+    '<div class="job-card">' +
+    '<div style="display:flex;gap:14px;margin-bottom:14px">' +
+    '<div class="skeleton" style="width:46px;height:46px;border-radius:10px;flex-shrink:0"></div>' +
+    '<div style="flex:1"><div class="skeleton" style="height:16px;width:55%;margin-bottom:8px"></div><div class="skeleton" style="height:13px;width:30%"></div></div></div>' +
+    '<div style="display:flex;gap:10px;margin-bottom:14px"><div class="skeleton" style="height:13px;width:25%"></div><div class="skeleton" style="height:13px;width:20%"></div><div class="skeleton" style="height:13px;width:18%"></div></div>' +
+    '<div style="display:flex;gap:8px;margin-bottom:16px"><div class="skeleton" style="height:24px;width:72px;border-radius:999px"></div><div class="skeleton" style="height:24px;width:72px;border-radius:999px"></div></div>' +
+    '<div style="display:flex;justify-content:space-between;align-items:center"><div class="skeleton" style="height:16px;width:30%"></div><div style="display:flex;gap:8px"><div class="skeleton" style="height:36px;width:72px;border-radius:999px"></div><div class="skeleton" style="height:36px;width:96px;border-radius:999px"></div></div></div></div>'
+  ).join('');
 }
- 
+
 function showError(msg) {
-  document.getElementById('jobsList').innerHTML = `<div class="state-box">
-    <div class="state-icon">⚠️</div>
-    <div class="state-title">Could not load jobs</div>
-    <div class="state-sub">${esc(msg)}</div>
-    <button class="btn-retry" onclick="loadJobs()">Try Again</button>
-  </div>`;
+  document.getElementById('jobsList').innerHTML =
+    '<div class="state-box"><div class="state-title">Could not load jobs</div><div class="state-sub">' + esc(msg) + '</div><button class="btn-retry" onclick="loadJobs()">Try Again</button></div>';
   ['statTotal','statRemote','statFresher','statCompanies'].forEach(id => document.getElementById(id).textContent='--');
   document.getElementById('resultsCount').textContent='-- roles found';
 }
- 
+
 function toggleMenu() {
   document.getElementById('mobileMenu').classList.toggle('open');
   document.getElementById('hamburger').classList.toggle('open');
 }
- 
+
 document.addEventListener('click', function(e) {
   const nav = document.getElementById('navOuter');
   const menu = document.getElementById('mobileMenu');
@@ -599,11 +565,11 @@ document.addEventListener('click', function(e) {
     document.getElementById('hamburger').classList.remove('open');
   }
 });
- 
+
 window.addEventListener('scroll', function(){
   document.getElementById('navOuter').classList.toggle('scrolled', window.scrollY > 10);
 });
- 
+
 loadJobs();
 </script>
 </body>
